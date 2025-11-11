@@ -5,9 +5,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from .cache import cache_get, cache_set, append_session_message, get_session
-from .llm_sqlgen import generate_sql_and_explanation
-from .sql_executor import run_sql
+from backend.cache import cache_get, cache_set, append_session_message, get_session
+from backend.llm_sqlgen import generate_sql_and_explanation
+from backend.sql_executor import run_sql
 
 app = FastAPI(title="Olist Chat Backend")
 
