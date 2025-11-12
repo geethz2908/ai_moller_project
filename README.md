@@ -11,10 +11,12 @@ It allows users to **ask natural-language questions** about sales, revenue, orde
 * Caches responses for performance optimization
 * Stores **conversation history** for every user session
 
-🚀 Live Demo: Olist Chat on Render
- — accessible to everyone online!
 
-Both the frontend and backend are fully deployed on Render, so this project is not limited to local execution — it can be accessed and used by others directly through the hosted web app.
+
+🚀 **Live Demo:**
+**[Olist Chat on Streamlit](https://aimollerproject-ext4tbr78b9yfmcnuqqwv7.streamlit.app/)** — accessible to everyone online!
+Both the **frontend and backend** are fully deployed on **Render**, so this project is **not limited to local execution** — it can be **used by others directly** through the hosted web app.
+
 
 ---
 
@@ -289,4 +291,5 @@ If given more time, I would:
 B.Tech AIML, PES University
 
 ---
+
 
