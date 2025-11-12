@@ -2,17 +2,20 @@
 
 # 🛒 Olist Chat — Natural Language E-commerce Analytics Assistant
 
-Olist Chat is an **AI-powered analytics assistant** built using the **Olist Brazilian E-commerce dataset** from Kaggle.  
+Olist Chat is an **AI-powered analytics assistant** built using the **Olist Brazilian E-commerce dataset** from Kaggle.
 It allows users to **ask natural-language questions** about sales, revenue, orders, and products, and automatically:
 
-* Generates corresponding **SQL queries** using **Google Gemini**,
-* Executes the SQL safely on a local or deployed **DuckDB database**,
-* Explains the query in simple language,
-* Returns a structured **data table** and **summary explanation**,
-* Caches responses for performance optimization, and
-* Stores **conversation history** for every user session.
+* Generates corresponding **SQL queries** using **Google Gemini 2.5 Pro (models/gemini-2.5-pro)**
+* Executes the SQL safely on a local or deployed **DuckDB database**
+* Explains the query in simple language
+* Returns a structured **data table** and **summary explanation**
+* Caches responses for performance optimization
+* Stores **conversation history** for every user session
 
-> 🚀 **Live Demo:** [Olist Chat on Render](https://ai-moller-project.onrender.com/) — try it directly in your browser!
+🚀 Live Demo: Olist Chat on Render
+ — accessible to everyone online!
+
+Both the frontend and backend are fully deployed on Render, so this project is not limited to local execution — it can be accessed and used by others directly through the hosted web app.
 
 ---
 
@@ -22,12 +25,12 @@ It allows users to **ask natural-language questions** about sales, revenue, orde
 
 This dataset contains information from an e-commerce platform (Olist) operating in Brazil, including:
 
-* Orders placed by customers  
-* Products sold by multiple sellers  
-* Payment details  
-* Delivery times  
-* Customer reviews  
-* Geolocation data  
+* Orders placed by customers
+* Products sold by multiple sellers
+* Payment details
+* Delivery times
+* Customer reviews
+* Geolocation data
 
 It provides a realistic foundation for business intelligence and analytics tasks such as sales trends, order analysis, and product performance.
 
@@ -36,42 +39,56 @@ It provides a realistic foundation for business intelligence and analytics tasks
 ## ⚙️ Features Overview
 
 ### 1. 💬 Natural Language to SQL
+
 * Users can type questions like *“What is the total revenue in 2017?”*
-* The **Google Gemini API** automatically generates a **valid SQL query** based on the dataset schema.
+* The **Google Gemini API (model: models/gemini-2.5-pro)** automatically generates a valid SQL query based on the dataset schema.
 
-  ```sql
-  SELECT SUM(price) AS total_revenue 
-  FROM orders_full 
-  WHERE order_purchase_timestamp >= '2017-01-01' 
-    AND order_purchase_timestamp < '2018-01-01';
+```sql
+SELECT SUM(price) AS total_revenue 
+FROM orders_full 
+WHERE order_purchase_timestamp >= '2017-01-01' 
+  AND order_purchase_timestamp < '2018-01-01';
+```
 
+---
 
 ### 2. 🧠 SQL Explanation
 
 * Once the query is generated, the system also uses Gemini to produce a **simple explanation** of what the SQL does — written in human-friendly terms.
+
+---
 
 ### 3. 🗃️ Query Execution
 
 * The generated SQL runs against a **DuckDB database** (created from the Olist CSV files).
 * **Only safe `SELECT` queries** are executed to prevent harmful operations.
 
+---
+
 ### 4. ⚡ Caching System (Redis)
 
 * The system uses **Redis** to cache query results and chat sessions.
 * When a user repeats a question, the answer is instantly served from cache.
+
+---
 
 ### 5. 💾 Conversation History
 
 * All user interactions and assistant responses are stored persistently (per session).
 * Makes it easy to maintain **chat context** and revisit past queries.
 
+---
+
 ### 6. 🤖 Chat Handling
 
 * Recognizes small talk (e.g., “Hi”, “What can you do?”) and responds smartly without triggering SQL generation.
 
+---
+
 ### 7. 🖥️ Streamlit Frontend
 
 * The **frontend interface** built with **Streamlit** lets users chat with the assistant interactively, view SQL, explanations, and result tables.
+* Deployed publicly, allowing other users to access and use it through the web browser.
 
 ---
 
@@ -108,11 +125,17 @@ It provides a realistic foundation for business intelligence and analytics tasks
 
 * Simple chat interface.
 * Displays questions, generated SQL, explanation, and query results.
+* Fully deployed for public access.
+
+---
 
 ### **Backend Framework:** FastAPI
 
 * Exposes REST endpoints `/chat`, `/run_sql`, `/session/{id}`.
 * Handles both small talk and analytical queries.
+* Hosted on Render, making it accessible from any client.
+
+---
 
 ### **Database Layer:** DuckDB
 
@@ -120,9 +143,14 @@ It provides a realistic foundation for business intelligence and analytics tasks
 * Stores ingested CSV data for fast querying.
 * Created using `ingest.py`.
 
+---
+
 ### **LLM Integration:** Google Gemini
 
-* Converts natural-language queries to SQL and provides human-readable explanations.
+* Uses **Gemini 2.5 Pro (models/gemini-2.5-pro)** for natural-language → SQL conversion and query explanation.
+* Provides high-quality and schema-aware SQL generation.
+
+---
 
 ### **Caching Layer:** Redis
 
@@ -133,11 +161,11 @@ It provides a realistic foundation for business intelligence and analytics tasks
 
 ## 💡 Example Queries
 
-| User Question                                     | SQL Output                                                                                                      | Explanation                                       |
-| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| "What was the total number of orders in 2018?"    | `SELECT COUNT(order_id) FROM orders_full WHERE order_purchase_timestamp BETWEEN '2018-01-01' AND '2018-12-31';` | Counts all orders placed during 2018.             |
-| "Which product categories had the highest sales?" | SQL query grouping by product_category_name                                                                     | Lists top categories ranked by total sales value. |
-| "Show me average delivery time for each state"    | Joins order and geolocation tables                                                                              | Displays mean delivery duration per region.       |
+| User Question                                   | SQL Output                                                                                                      | Explanation                                       |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| What was the total number of orders in 2018?    | `SELECT COUNT(order_id) FROM orders_full WHERE order_purchase_timestamp BETWEEN '2018-01-01' AND '2018-12-31';` | Counts all orders placed during 2018.             |
+| Which product categories had the highest sales? | SQL query grouping by product_category_name                                                                     | Lists top categories ranked by total sales value. |
+| Show me average delivery time for each state.   | Joins order and geolocation tables                                                                              | Displays mean delivery duration per region.       |
 
 ---
 
@@ -147,7 +175,7 @@ It provides a realistic foundation for business intelligence and analytics tasks
 | ---------------------- | ---------------------------------------- | ------------------------------------------ |
 | Frontend               | **Streamlit**                            | Interactive web interface                  |
 | Backend Framework      | **FastAPI**                              | API routing and orchestration              |
-| LLM                    | **Google Gemini API (via google-genai)** | Natural language → SQL and explanations    |
+| LLM                    | **Google Gemini 2.5 Pro (models/gemini-2.5-pro)** | Natural language → SQL and explanations    |
 | Database               | **DuckDB**                               | Analytical database to store Olist dataset |
 | Cache                  | **Redis**                                | Query/session caching                      |
 | Data Handling          | **pandas**, **pathlib**                  | CSV reading and data management            |
@@ -199,16 +227,22 @@ git clone https://github.com/geethz2908/ai_moller_project.git
 cd ai_moller_project
 ```
 
+---
+
 ### 2. **Install Dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ### 3. **Set Up Environment Variables**
 
 Create a `.env` file at the project root and copy contents from `.env.example`.
 Fill in your API key and Redis URL as needed.
+
+---
 
 ### 4. **Ingest the Dataset**
 
@@ -219,11 +253,15 @@ Place them in a folder called `data/` at the repo root, then run:
 python backend/ingest.py
 ```
 
+---
+
 ### 5. **Start the Backend**
 
 ```bash
 uvicorn backend.main:app --reload
 ```
+
+---
 
 ### 6. **Run the Frontend**
 
@@ -244,8 +282,11 @@ If given more time, I would:
 * Add **user authentication** and personalized dashboards.
 * Optimize caching and enable **multi-user chat sessions**.
 
+---
 
 ## 👩‍💻 Author
 
 **Geethz**
 B.Tech AIML, PES University
+
+---
