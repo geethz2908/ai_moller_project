@@ -1,5 +1,3 @@
-Here’s a detailed, professional **README.md** you can use directly for your GitHub repo 👇
-
 ---
 
 # 🛒 Olist Chat — Natural Language E-commerce Analytics Assistant
@@ -266,3 +264,4 @@ B.Tech AIML, PES University
 ---
 
 Would you like me to make this README markdown file (`README.md`) ready for direct download (with proper formatting, emoji, and indentation preserved)?
+
