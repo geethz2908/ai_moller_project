@@ -17,6 +17,8 @@ It allows users to **ask natural-language questions** about sales, revenue, orde
 **[Olist Chat on Streamlit](https://aimollerproject-ext4tbr78b9yfmcnuqqwv7.streamlit.app/)** — accessible to everyone online!
 Both the **frontend and backend** are fully deployed on **Render**, so this project is **not limited to local execution** — it can be **used by others directly** through the hosted web app.
 
+**Video** => https://drive.google.com/file/d/12YNeGt5AhFO4eCLOc4iB4LLY2TKjl5Bl/view?usp=drive_link
+
 
 ---
 
@@ -291,5 +293,6 @@ If given more time, I would:
 B.Tech AIML, PES University
 
 ---
+
 
 
