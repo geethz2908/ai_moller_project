@@ -1,5 +1,3 @@
----
-
 # 🛒 Olist Chat — Natural Language E-commerce Analytics Assistant
 
 Olist Chat is an **AI-powered analytics assistant** built using the **Olist Brazilian E-commerce dataset** from Kaggle.
@@ -264,4 +262,5 @@ B.Tech AIML, PES University
 ---
 
 Would you like me to make this README markdown file (`README.md`) ready for direct download (with proper formatting, emoji, and indentation preserved)?
+
 
